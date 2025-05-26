@@ -1,7 +1,7 @@
 body {
   font-family: 'Cairo', sans-serif;
-  background: linear-gradient(135deg, #1E3C72, #2A5298); /* تدرج أزرق هادي */
-  color: #F0F4F8;
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,64 +11,44 @@ body {
 }
 
 .container {
-  background: rgba(30, 60, 114, 0.85); /* خلفية شفافة بلون أزرق غامق */
-  padding: 35px 40px;
-  border-radius: 20px;
-  width: 360px;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
-  transition: transform 0.3s ease;
-}
-
-.container:hover {
-  transform: translateY(-5px);
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 15px;
+  width: 400px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  text-align: right;
 }
 
 input, button {
   width: 100%;
-  padding: 14px;
-  margin: 12px 0;
-  border-radius: 12px;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 10px;
   border: none;
-  font-size: 17px;
+  font-size: 16px;
   box-sizing: border-box;
-  transition: box-shadow 0.3s ease;
-}
-
-input {
-  background-color: #F0F4F8;
-  color: #1E3C72;
-  font-weight: 600;
-  box-shadow: inset 0 0 5px rgba(30, 60, 114, 0.5);
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0 0 10px #719ECE;
 }
 
 button {
-  background-color: #3B82F6; /* أزرق فاتح */
-  color: white;
-  font-weight: 700;
+  background-color: white;
+  color: #0077b6;
+  font-weight: bold;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.5);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
 
 button:hover {
-  background-color: #2563EB; /* أزرق أغمق */
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.7);
+  background-color: #00b4d8;
+  color: white;
 }
 
 #resultText {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 18px;
-  border-radius: 14px;
-  min-height: 90px;
-  margin-top: 20px;
-  color: #D1D5DB; /* لون فاتح هادي */
-  font-weight: 700;
-  line-height: 1.5;
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.25);
-  user-select: text;
+  background: rgba(255,255,255,0.3);
+  padding: 15px;
+  border-radius: 10px;
+  min-height: 120px;
+  margin-top: 15px;
+  color: #023e8a;
+  font-weight: bold;
+  white-space: pre-line;
 }
