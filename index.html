@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تطبيق كود الأعطال</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <div class="container" id="loginPage">
+    <h2>مرحبا! سجل دخولك</h2>
+    <input type="text" id="userName" placeholder="اسمك" />
+    <input type="password" id="userCode" placeholder="الكود تاعك" />
+    <button id="loginBtn">دخول</button>
+  </div>
+
+  <div class="container" id="searchPage" style="display:none;">
+    <h2>بحث عن كود العطب</h2>
+    <input type="text" id="codeInput" placeholder="دخل كود العطب هنا: مثال P0300" />
+    <button id="searchBtn">🔍 إبحث</button>
+    <div id="resultText">دخل كود باش تشوف الشرح بالدارجة</div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker مسجل'))
+        .catch(() => console.log('فشل تسجيل Service Worker'));
+    }
+  </script>
+</body>
+</html>
