@@ -3,161 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>تطبيق كود الأعطال - diagDZ</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo&display=swap" rel="stylesheet" />
+  <title>تطبيق كود الأعطال</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <style>
-    /* بعض CSS داخل الصفحة للتجربة السريعة */
-    body {
-      font-family: 'Cairo', sans-serif;
-      background: linear-gradient(135deg, #1E3C72, #2A5298);
-      color: #F0F4F8;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      direction: rtl;
-    }
-    .container {
-      background: rgba(30, 60, 114, 0.95);
-      border-radius: 20px;
-      box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-      margin: 30px 20px;
-      max-width: 400px;
-      width: 100%;
-      padding: 30px 25px 40px 25px;
-      box-sizing: border-box;
-      transition: transform 0.3s ease;
-    }
-    .container:hover {
-      transform: translateY(-5px);
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-weight: 700;
-      font-size: 26px;
-      color: #90CAF9;
-      text-shadow: 0 0 5px #2A5298;
-    }
-    input[type="text"], input[type="password"] {
-      width: 100%;
-      padding: 15px 12px;
-      margin-bottom: 18px;
-      border: none;
-      border-radius: 12px;
-      font-size: 18px;
-      font-weight: 600;
-      color: #1E3C72;
-      background-color: #F0F4F8;
-      box-shadow: inset 0 0 8px rgba(30,60,114,0.5);
-      transition: box-shadow 0.3s ease;
-      outline: none;
-    }
-    input[type="text"]:focus, input[type="password"]:focus {
-      box-shadow: 0 0 12px #90CAF9;
-    }
-    button {
-      width: 100%;
-      padding: 15px;
-      background-color: #42A5F5;
-      border: none;
-      border-radius: 14px;
-      color: white;
-      font-size: 19px;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(66,165,245,0.6);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    button:hover {
-      background-color: #1976D2;
-      box-shadow: 0 8px 22px rgba(25,118,210,0.8);
-    }
-    #resultText {
-      background: rgba(255,255,255,0.15);
-      padding: 18px;
-      border-radius: 14px;
-      min-height: 100px;
-      margin-top: 22px;
-      color: #D1D5DB;
-      font-weight: 700;
-      line-height: 1.6;
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.25);
-      user-select: text;
-      white-space: pre-wrap;
-      font-size: 17px;
-    }
-    /* تنسيق الأقسام الجديدة */
-    #searchPage nav {
-      margin-bottom: 20px;
-      display: flex;
-      gap: 15px;
-      overflow-x: auto;
-      padding-bottom: 10px;
-    }
-    #searchPage nav button {
-      flex-shrink: 0;
-      padding: 10px 20px;
-      background-color: #1976D2;
-      font-size: 16px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(25,118,210,0.6);
-      transition: background-color 0.3s ease;
-      white-space: nowrap;
-    }
-    #searchPage nav button.active,
-    #searchPage nav button:hover {
-      background-color: #42A5F5;
-      box-shadow: 0 4px 12px rgba(66,165,245,0.8);
-    }
-    /* صفحة الترحيب */
-    #loginPage {
-      margin-top: 100px;
-    }
-  </style>
 </head>
 <body>
-
-  <!-- صفحة تسجيل الدخول -->
   <div class="container" id="loginPage">
     <h2>مرحبا! سجل دخولك</h2>
-    <input type="text" id="userName" placeholder="اسمك" autocomplete="off" />
-    <input type="password" id="userCode" placeholder="الكود تاعك" autocomplete="off" />
+    <input type="text" id="userName" placeholder="اسمك" />
+    <input type="password" id="userCode" placeholder="الكود تاعك" />
     <button id="loginBtn">دخول</button>
   </div>
 
-  <!-- صفحة البحث والأقسام -->
   <div class="container" id="searchPage" style="display:none;">
     <h2>بحث عن كود العطب</h2>
-
-    <!-- أقسام الكود -->
-    <nav id="sectionsNav">
-      <button class="active" data-section="all">الكل</button>
-      <button data-section="moteur">الموتور</button>
-      <button data-section="electricite">الكهرباء</button>
-      <button data-section="transmission">النقل</button>
-      <!-- تقدر تزيد أقسام أكثر هنا -->
-    </nav>
-
-    <!-- خانة البحث -->
-    <input type="text" id="codeInput" placeholder="دخل كود العطب هنا: مثال P0300" autocomplete="off" />
+    <input type="text" id="codeInput" placeholder="دخل كود العطب هنا: مثال P0300" />
     <button id="searchBtn">🔍 إبحث</button>
-
-    <!-- نتيجة البحث -->
     <div id="resultText">دخل كود باش تشوف الشرح بالدارجة</div>
   </div>
 
   <script src="script.js"></script>
-  <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js')
-        .then(() => console.log('Service Worker مسجل'))
-        .catch(() => console.log('فشل تسجيل Service Worker'));
-    }
-  </script>
 </body>
 </html>
